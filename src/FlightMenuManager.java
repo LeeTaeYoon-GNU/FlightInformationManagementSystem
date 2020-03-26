@@ -42,7 +42,7 @@ public class FlightMenuManager {
 	public static void uploadFlight() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Flight Number : ");
-		String flightNum = input.next();
+		int flightNum = input.nextInt();
 		System.out.println("Airline : ");
 		String airlineName = input.next();
 		System.out.println("Departure : ");
@@ -56,21 +56,21 @@ public class FlightMenuManager {
 	public static void deleteFlight() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Flight Number : ");
-		String flightNum = input.next();
+		int flightNum = input.nextInt();
 	}
 	public static void editFlight() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Flight Number : ");
-		String flightNum = input.next();
+		int flightNum = input.nextInt();
 	}
 	public static void viewAllFlight() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Flight Number : ");
-		String flightNum = input.next();
+		int flightNum = input.nextInt();
 	}
 	public static void searchFlight() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Flight Number : ");
-		String flightNum = input.next();
+		int flightNum = input.nextInt();
 	}
 }
