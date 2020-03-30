@@ -4,7 +4,7 @@ public class Flight {
 	private	String airlineName;
 	private	String departure;
 	private	String arrival;
-	private	String flightTime;
+	private	String flightTime;	//기계항공 이태윤1234
 	
 	public Flight() {
 	}
