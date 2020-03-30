@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class FlightMenuManager {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+		FlightManager flightManager = new FlightManager(input);
 		int selection;
 		boolean flag = true;
 
@@ -18,19 +19,19 @@ public class FlightMenuManager {
 			selection = input.nextInt();
 			switch(selection) {
 			case 1:
-				uploadFlight();
+				flightManager.uploadFlight();
 				break;
 			case 2:
-				deleteFlight();
+				flightManager.deleteFlight();
 				break;
 			case 3:
-				editFlight();
+				flightManager.editFlight();
 				break;
 			case 4:
-				viewAllFlight();
+				flightManager.viewAllFlight();
 				break;
 			case 5:
-				searchFlight();
+				flightManager.searchFlight();
 				break;
 			case 6:
 				flag = false;
@@ -39,38 +40,5 @@ public class FlightMenuManager {
 		}
 	}
 	
-	public static void uploadFlight() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Flight Number : ");
-		int flightNum = input.nextInt();
-		System.out.println("Airline : ");
-		String airlineName = input.next();
-		System.out.println("Departure : ");
-		String departure = input.next();
-		System.out.println("Arrival : ");
-		String arrival = input.next();
-		System.out.println("Flight Time : ");
-		String flightTime = input.next();
-		System.out.println("Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
-	}
-	public static void deleteFlight() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Flight Number : ");
-		int flightNum = input.nextInt();
-	}
-	public static void editFlight() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Flight Number : ");
-		int flightNum = input.nextInt();
-	}
-	public static void viewAllFlight() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Flight Number : ");
-		int flightNum = input.nextInt();
-	}
-	public static void searchFlight() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Flight Number : ");
-		int flightNum = input.nextInt();
-	}
+	
 }
