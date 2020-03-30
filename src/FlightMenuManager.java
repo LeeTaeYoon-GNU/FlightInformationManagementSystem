@@ -17,6 +17,7 @@ public class FlightMenuManager {
 			System.out.println("6. Exit");
 			System.out.print("Select the menu between 1 - 6 : ");
 			selection = input.nextInt();
+			System.out.println();
 			switch(selection) {
 			case 1:
 				flightManager.uploadFlight();

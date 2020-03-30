@@ -8,35 +8,37 @@ public class FlightManager {
 	}
 	
 	public void uploadFlight() {
-		System.out.println("Flight Number : ");
+		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		System.out.println("Airline : ");
+		System.out.print("Airline : ");
 		String airlineName = input.next();
-		System.out.println("Departure : ");
+		System.out.print("Departure : ");
 		String departure = input.next();
-		System.out.println("Arrival : ");
+		System.out.print("Arrival : ");
 		String arrival = input.next();
-		System.out.println("Flight Time : ");
+		System.out.print("Flight Time : ");
 		String flightTime = input.next();
 		flight = new Flight(flightNum, airlineName, departure, arrival, flightTime);		//initializing the fields by constructor
 		flight.printInfo();
 	}
 	
 	public void deleteFlight() {
-		System.out.println("Flight Number : ");
+		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		if(registration() == false)
+		if(registration(flightNum) == false)
 			return;
 		if(flight.flightNumReturn() == flightNum) {
 			flight = null;
 			System.out.println("The Flight Information is deleted");
 		}
+		System.out.println();
 	}
 	
 	public void editFlight() {
-		System.out.println("Flight Number : ");
+		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		if(registration() == false)
+		System.out.println();
+		if(registration(flightNum) == false)
 			return;
 		if(flight.flightNumReturn() == flightNum) {
 			int selection;
@@ -57,26 +59,32 @@ public class FlightManager {
 				System.out.println("6. Exit");
 				System.out.print("Select the menu between 1 - 6 : ");
 				selection = input.nextInt();
+				System.out.println();
 				switch(selection) {
 				case 1:
-					System.out.println("Flight Number : ");
+					System.out.print("Flight Number : ");
 					edflightNum = input.nextInt();
+					System.out.println();
 					break;
 				case 2:
-					System.out.println("Airline : ");
+					System.out.print("Airline : ");
 					edairlineName = input.next();
+					System.out.println();
 					break;
 				case 3:
-					System.out.println("Departure : ");
+					System.out.print("Departure : ");
 					eddeparture = input.next();
+					System.out.println();
 					break;
 				case 4:
-					System.out.println("Arrival : ");
+					System.out.print("Arrival : ");
 					edarrival = input.next();
+					System.out.println();
 					break;
 				case 5:
-					System.out.println("Flight Time : ");
+					System.out.print("Flight Time : ");
 					edflightTime = input.next();
+					System.out.println();
 					break;
 				case 6:
 					flag = false;
@@ -89,26 +97,28 @@ public class FlightManager {
 	
 	//method "viewAllFight would be used when a lot of data are made
 	public void viewAllFlight() {
-		System.out.println("Flight Number : ");
+		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		if(registration() == false)
+		if(registration(flightNum) == false)
 			return;
+		System.out.println();
 	}
 	
 	public void searchFlight() {
-		System.out.println("Flight Number : ");
+		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		if(registration() == false)
+		if(registration(flightNum) == false)
 			return;
 		if(flight.flightNumReturn() == flightNum) {
 			flight.printInfo();
 		}
+		System.out.println();
 	}
 	
 	//method "registration" is used for checking that reference variable refer a instance
-	public boolean registration() {
-		if(flight == null) {
-			System.out.println("The Flight Information has not been registered");
+	public boolean registration(int flightNum) {
+		if(flight == null || flight.flightNumReturn() != flightNum) {
+			System.out.println("The Flight Information has not been registered \n");
 			return false;
 		}
 		return true;
