@@ -1,5 +1,6 @@
 
 public class Flight {
+	//information hiding
 	private int flightNum;
 	private	String airlineName;
 	private	String departure;
@@ -26,6 +27,7 @@ public class Flight {
 		System.out.println("Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
 	}
 	
+	//for return each fields
 	public int flightNumReturn() {
 		return flightNum;
 	}
@@ -46,6 +48,7 @@ public class Flight {
 		return flightTime;
 	}
 	
+	//for edit
 	public void flightEdit(int edflightNum, String edairlineName, String eddeparture, String edarrival, String edflightTime) {
 		this.flightNum = edflightNum;
 		this.airlineName = edairlineName;

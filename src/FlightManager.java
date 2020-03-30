@@ -18,9 +18,10 @@ public class FlightManager {
 		String arrival = input.next();
 		System.out.println("Flight Time : ");
 		String flightTime = input.next();
-		flight = new Flight(flightNum, airlineName, departure, arrival, flightTime);
+		flight = new Flight(flightNum, airlineName, departure, arrival, flightTime);		//initializing the fields by constructor
 		flight.printInfo();
 	}
+	
 	public void deleteFlight() {
 		System.out.println("Flight Number : ");
 		int flightNum = input.nextInt();
@@ -31,6 +32,7 @@ public class FlightManager {
 			System.out.println("The Flight Information is deleted");
 		}
 	}
+	
 	public void editFlight() {
 		System.out.println("Flight Number : ");
 		int flightNum = input.nextInt();
@@ -84,12 +86,15 @@ public class FlightManager {
 			}
 		}
 	}
+	
+	//method "viewAllFight would be used when a lot of data are made
 	public void viewAllFlight() {
 		System.out.println("Flight Number : ");
 		int flightNum = input.nextInt();
 		if(registration() == false)
 			return;
 	}
+	
 	public void searchFlight() {
 		System.out.println("Flight Number : ");
 		int flightNum = input.nextInt();
@@ -100,6 +105,7 @@ public class FlightManager {
 		}
 	}
 	
+	//method "registration" is used for checking that reference variable refer a instance
 	public boolean registration() {
 		if(flight == null) {
 			System.out.println("The Flight Information has not been registered");
@@ -107,5 +113,4 @@ public class FlightManager {
 		}
 		return true;
 	}
-
 }
