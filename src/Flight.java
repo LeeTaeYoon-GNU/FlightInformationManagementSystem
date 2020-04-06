@@ -24,7 +24,7 @@ public class Flight {
 	}
 	
 	public void printInfo() {
-		System.out.println("Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime + "\n");
+		System.out.println("Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
 	}
 	
 	//for return each fields

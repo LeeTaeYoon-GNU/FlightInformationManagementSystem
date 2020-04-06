@@ -12,7 +12,7 @@ public class FlightMenuManager {
 			System.out.println("1. Upload Flight");
 			System.out.println("2. Delete Flight");
 			System.out.println("3. Edit Flight");
-			System.out.println("4. View All Flight");
+			System.out.println("4. View All Flights");
 			System.out.println("5. Search Flight");
 			System.out.println("6. Exit");
 			System.out.print("Select the menu between 1 - 6 : ");
@@ -29,7 +29,7 @@ public class FlightMenuManager {
 				flightManager.editFlight();
 				break;
 			case 4:
-				flightManager.viewAllFlight();
+				flightManager.viewAllFlights();
 				break;
 			case 5:
 				flightManager.searchFlight();
