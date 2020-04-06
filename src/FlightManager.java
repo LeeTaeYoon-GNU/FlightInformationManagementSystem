@@ -106,7 +106,7 @@ public class FlightManager {
 		}
 	}
 	
-	//method "viewAllFight would be used when a lot of data are made
+	//this method show all flight information.
 	public void viewAllFlights() {
 		for(int i = 0; i < flights.size(); i++) {
 			flights.get(i).printInfo();
@@ -130,7 +130,7 @@ public class FlightManager {
 		}
 	}
 	
-	//method "registration" is used for checking that reference variable refer a instance
+	//if there is same flightNum from user in collection, than return the index of it. 
 	public int indexChecker(ArrayList<Flight> flights, int flightNum) {
 		int index = -1;
 		for(int i = 0; i < flights.size(); i++) {
