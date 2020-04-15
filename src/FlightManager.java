@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Flight.Flight;
+import Flight.InternationalFlight;
+
 public class FlightManager {
 	ArrayList<Flight> flights = new ArrayList<Flight>();
 	Scanner input;
@@ -9,20 +12,38 @@ public class FlightManager {
 	}
 	
 	public void uploadFlight() {
-		System.out.print("Flight Number : ");
-		int flightNum = input.nextInt();
-		System.out.print("Airline : ");
-		String airlineName = input.next();
-		System.out.print("Departure : ");
-		String departure = input.next();
-		System.out.print("Arrival : ");
-		String arrival = input.next();
-		System.out.print("Flight Time : ");
-		String flightTime = input.next();
-		Flight flight = new Flight(flightNum, airlineName, departure, arrival, flightTime);		//initializing the fields by constructor
-		flight.printInfo();
-		System.out.println();
-		flights.add(flight);
+		int kind = 0;
+		Flight flight;
+		
+		//you can choose between Domestic flight and International flight
+		while(kind != 1 && kind != 2) {
+			System.out.println("--Kind of Flight--");
+			System.out.println("1. Domestic Flight");
+			System.out.println("2. International Flight");
+			System.out.print("Select between 1 - 2 : ");
+			kind = input.nextInt();
+			System.out.println();
+			
+			switch(kind) {
+			case 1:
+				flight = new Flight();
+				flight.getUserInput(input);
+				flight.printInfo();
+				System.out.println();
+				flights.add(flight);
+				break;
+			case 2:
+				flight = new InternationalFlight();
+				flight.getUserInput(input);
+				flight.printInfo();
+				System.out.println();
+				flights.add(flight);
+				break;
+			default :
+				System.out.println("Select again...");
+				System.out.println();
+			}
+		}
 	}
 	
 	public void deleteFlight() {
@@ -47,56 +68,11 @@ public class FlightManager {
 		int index = indexChecker(flights, flightNum);
 		System.out.println();
 		if(index >= 0) {
-			int selection;
-			boolean flag = true;
-			int edflightNum = flights.get(index).flightNumReturn();
-			String edairlineName = flights.get(index).airlineNameReturn();
-			String eddeparture = flights.get(index).departureReturn();
-			String edarrival = flights.get(index).arrivalReturn();
-			String edflightTime = flights.get(index).flightTmeReturn();
-
-			while(flag) {
-				System.out.println("--Flight Information Edit Menu-- \n");
-				System.out.println("1. Edit Flight Numer");
-				System.out.println("2. Edit Airline");
-				System.out.println("3. Edit Departure");
-				System.out.println("4. Edit Arrival");
-				System.out.println("5. Edit Flight Time");
-				System.out.println("6. Exit");
-				System.out.print("Select the menu between 1 - 6 : ");
-				selection = input.nextInt();
-				System.out.println();
-				switch(selection) {
-				case 1:
-					System.out.print("Flight Number : ");
-					edflightNum = input.nextInt();
-					System.out.println();
-					break;
-				case 2:
-					System.out.print("Airline : ");
-					edairlineName = input.next();
-					System.out.println();
-					break;
-				case 3:
-					System.out.print("Departure : ");
-					eddeparture = input.next();
-					System.out.println();
-					break;
-				case 4:
-					System.out.print("Arrival : ");
-					edarrival = input.next();
-					System.out.println();
-					break;
-				case 5:
-					System.out.print("Flight Time : ");
-					edflightTime = input.next();
-					System.out.println();
-					break;
-				case 6:
-					flag = false;
-					break;
-				}
-				flights.get(index).flightEdit(edflightNum, edairlineName, eddeparture, edarrival, edflightTime);
+			if(flights.get(index) instanceof InternationalFlight) {
+				flights.get(index).getUserEdit(input);
+			}
+			else {
+				flights.get(index).getUserEdit(input);
 			}
 			return;
 		}
@@ -134,7 +110,7 @@ public class FlightManager {
 	public int indexChecker(ArrayList<Flight> flights, int flightNum) {
 		int index = -1;
 		for(int i = 0; i < flights.size(); i++) {
-			if(flights.get(i).flightNumReturn() == flightNum) {
+			if(flights.get(i).getFlightNum() == flightNum) {
 				index = i;
 				break;
 			}

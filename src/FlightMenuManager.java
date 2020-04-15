@@ -37,6 +37,9 @@ public class FlightMenuManager {
 			case 6:
 				flag = false;
 				break;
+			default:
+				System.out.println("Select again...");
+				System.out.println();
 			}			
 		}
 	}
