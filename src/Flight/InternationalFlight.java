@@ -23,7 +23,7 @@ public class InternationalFlight extends Flight {
 	public int getTransferTime() {
 		return transferTimes;
 	}
-
+	
 	public void setTransferTime(int transferTime) {
 		this.transferTimes = transferTime;
 	}

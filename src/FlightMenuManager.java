@@ -40,7 +40,7 @@ public class FlightMenuManager {
 			default:
 				System.out.println("Select again...");
 				System.out.println();
-			}			
+			}		
 		}
 	}
 }

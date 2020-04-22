@@ -24,11 +24,11 @@ public class Flight {
 		this.arrival = arrival;
 		this.flightTime = flightTime;
 	}
-	 
+	
 	public FlightKind getKind() {
 		return kind;
 	}
-
+	
 	public void setKind(FlightKind kind) {
 		this.kind = kind;
 	}

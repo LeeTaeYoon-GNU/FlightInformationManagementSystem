@@ -46,7 +46,7 @@ public class FlightManager {
 			}
 		}
 	}
-
+	
 	public void deleteFlight() {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
