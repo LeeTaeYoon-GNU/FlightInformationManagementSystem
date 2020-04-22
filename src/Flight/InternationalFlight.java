@@ -10,6 +10,10 @@ public class InternationalFlight extends Flight {
 	
 	public InternationalFlight() {
 	}
+	
+	public InternationalFlight(FlightKind kind) {
+		super(kind);
+	}
 
 	public InternationalFlight(int flightNum, String airlineName, String departure, String arrival, String flightTime, int transferTime) {
 		super(flightNum, airlineName, departure, arrival, flightTime);
@@ -26,7 +30,7 @@ public class InternationalFlight extends Flight {
 	
 	public void printInfo() {
 		super.printInfo();
-		System.out.print("TransferTimes : " + transferTimes + "/ Trnasfer City : ");
+		System.out.print("/ TransferTimes : " + transferTimes + "/ Trnasfer City : ");
 		for(int i = 0; i < transferTimes; i++) {
 			System.out.print(transferCities.get(i));
 			if(i != (transferTimes - 1))
@@ -50,7 +54,7 @@ public class InternationalFlight extends Flight {
 			System.out.println("6. Edit Transfer Times");
 			System.out.println("7. Edit Transfer City");
 			System.out.println("8. Exit");
-			System.out.print("Select the menu between 1 - 6 : ");
+			System.out.print("Select the menu between 1 - 8 : ");
 			selection = input.nextInt();
 			System.out.println();
 			switch(selection) {
@@ -85,14 +89,23 @@ public class InternationalFlight extends Flight {
 				System.out.println();
 				break;
 			case 6:
-				System.out.print("Flight Time : ");
+				System.out.print("Transfer Time : ");
 				int edtransferTimes = input.nextInt();
 				this.setTransferTime(edtransferTimes);
+				transferCities.clear();
+				input.nextLine();
+				for(int i = 0; i < transferTimes; i++) {
+					System.out.print((i+1) + ". Transfer city : ");
+					String edtransfer = input.nextLine();
+					this.transferCities.add(edtransfer);
+				}
 				System.out.println();
 				break;
 			case 7:
+				transferCities.clear();
 				input.nextLine();
 				for(int i = 0; i < transferTimes; i++) {
+					
 					System.out.print((i+1) + ". Transfer city : ");
 					String edtransfer = input.nextLine();
 					this.transferCities.add(edtransfer);

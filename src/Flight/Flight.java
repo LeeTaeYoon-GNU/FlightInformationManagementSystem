@@ -3,7 +3,7 @@ package Flight;
 import java.util.Scanner;
 
 public class Flight {
-	protected FlightKind kind = FlightKind.DomesticFlight;
+	protected FlightKind kind;
 	protected int flightNum;
 	protected String airlineName;
 	protected String departure;
@@ -11,6 +11,10 @@ public class Flight {
 	protected String flightTime;
 	
 	public Flight() {
+	}
+	
+	public Flight(FlightKind kind) {
+		this.kind = kind;
 	}
 	
 	public Flight(int flightNum, String airlineName, String departure, String arrival, String flightTime) {
@@ -21,6 +25,14 @@ public class Flight {
 		this.flightTime = flightTime;
 	}
 	
+	public FlightKind getKind() {
+		return kind;
+	}
+
+	public void setKind(FlightKind kind) {
+		this.kind = kind;
+	}
+
 	public int getFlightNum() {
 		return flightNum;
 	}
@@ -62,7 +74,17 @@ public class Flight {
 	}
 	
 	public void printInfo() {
-		System.out.println("Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
+		String fkind = "None";
+		switch(this.kind) {
+		case DomesticFlight:
+			fkind = "DomesticFlight";
+			break;
+		case InternationalFlight:
+			fkind = "InternationalFlight";
+		default:
+			break;
+		}
+		System.out.println("FlightKind : " + fkind + "/ Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
 	}
 	
 	//for editing Domestic Flight

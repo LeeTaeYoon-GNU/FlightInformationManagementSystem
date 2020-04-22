@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Flight.Flight;
+import Flight.FlightKind;
 import Flight.InternationalFlight;
 
 public class FlightManager {
@@ -26,14 +27,14 @@ public class FlightManager {
 			
 			switch(kind) {
 			case 1:
-				flight = new Flight();
+				flight = new Flight(FlightKind.DomesticFlight);
 				flight.getUserInput(input);
 				flight.printInfo();
 				System.out.println();
 				flights.add(flight);
 				break;
 			case 2:
-				flight = new InternationalFlight();
+				flight = new InternationalFlight(FlightKind.InternationalFlight);
 				flight.getUserInput(input);
 				flight.printInfo();
 				System.out.println();
@@ -68,12 +69,7 @@ public class FlightManager {
 		int index = indexChecker(flights, flightNum);
 		System.out.println();
 		if(index >= 0) {
-			if(flights.get(index) instanceof InternationalFlight) {
-				flights.get(index).getUserEdit(input);
-			}
-			else {
-				flights.get(index).getUserEdit(input);
-			}
+			flights.get(index).getUserEdit(input);
 			return;
 		}
 		else {
