@@ -4,14 +4,14 @@ import java.util.Scanner;
 import Flight.Flight;
 import Flight.FlightKind;
 import Flight.InternationalFlight;
- 
+
 public class FlightManager {
 	ArrayList<Flight> flights = new ArrayList<Flight>();
 	Scanner input;
 	FlightManager(Scanner input) {
 		this.input = input;
 	}
-	 
+	
 	public void uploadFlight() {
 		int kind = 0;
 		Flight flight;

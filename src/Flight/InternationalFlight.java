@@ -2,7 +2,7 @@ package Flight;
 
 import java.util.ArrayList;
 import java.util.Scanner;
- 
+
 public class InternationalFlight extends Flight {
 	//in contrast with "Flight.class", this class has two more fields
 	private int transferTimes;

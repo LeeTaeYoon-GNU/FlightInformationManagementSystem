@@ -1,7 +1,7 @@
 package Flight;
 
 import java.util.Scanner;
- 
+
 public class Flight {
 	protected FlightKind kind;
 	protected int flightNum;
