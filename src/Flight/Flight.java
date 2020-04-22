@@ -1,5 +1,5 @@
 package Flight;
-
+ 
 import java.util.Scanner;
 
 public class Flight {
