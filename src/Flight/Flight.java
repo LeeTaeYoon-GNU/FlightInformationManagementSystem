@@ -9,7 +9,7 @@ public class Flight {
 	protected String departure;
 	protected String arrival;
 	protected String flightTime;
-	
+	 
 	public Flight() {
 	}
 	

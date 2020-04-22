@@ -10,7 +10,7 @@ public class InternationalFlight extends Flight {
 	
 	public InternationalFlight() {
 	}
-	
+	 
 	public InternationalFlight(FlightKind kind) {
 		super(kind);
 	}

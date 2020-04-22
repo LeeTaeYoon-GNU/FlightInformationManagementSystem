@@ -11,7 +11,7 @@ public class FlightManager {
 	FlightManager(Scanner input) {
 		this.input = input;
 	}
-	
+	 
 	public void uploadFlight() {
 		int kind = 0;
 		Flight flight;
