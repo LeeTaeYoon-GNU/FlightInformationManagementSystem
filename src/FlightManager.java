@@ -4,7 +4,7 @@ import java.util.Scanner;
 import Flight.Flight;
 import Flight.FlightKind;
 import Flight.InternationalFlight;
- 
+
 public class FlightManager {
 	ArrayList<Flight> flights = new ArrayList<Flight>();
 	Scanner input;
