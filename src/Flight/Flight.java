@@ -24,7 +24,7 @@ public class Flight {
 		this.arrival = arrival;
 		this.flightTime = flightTime;
 	}
-	
+	 
 	public FlightKind getKind() {
 		return kind;
 	}

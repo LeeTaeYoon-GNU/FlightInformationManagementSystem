@@ -6,7 +6,7 @@ public class FlightMenuManager {
 		FlightManager flightManager = new FlightManager(input);
 		int selection;
 		boolean flag = true;
-
+		
 		while(flag) {
 			System.out.println("----Flight Information Menu---- \n");
 			System.out.println("1. Upload Flight");

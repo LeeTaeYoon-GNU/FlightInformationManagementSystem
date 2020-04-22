@@ -14,7 +14,7 @@ public class InternationalFlight extends Flight {
 	public InternationalFlight(FlightKind kind) {
 		super(kind);
 	}
-
+	
 	public InternationalFlight(int flightNum, String airlineName, String departure, String arrival, String flightTime, int transferTime) {
 		super(flightNum, airlineName, departure, arrival, flightTime);
 		this.transferTimes = transferTime;

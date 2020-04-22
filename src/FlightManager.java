@@ -24,7 +24,7 @@ public class FlightManager {
 			System.out.print("Select between 1 - 2 : ");
 			kind = input.nextInt();
 			System.out.println();
-			
+			  
 			switch(kind) {
 			case 1:
 				flight = new Flight(FlightKind.DomesticFlight);
@@ -46,7 +46,7 @@ public class FlightManager {
 			}
 		}
 	}
-	
+
 	public void deleteFlight() {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
