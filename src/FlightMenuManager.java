@@ -8,14 +8,7 @@ public class FlightMenuManager {
 		boolean flag = true;
 		 
 		while(flag) {
-			System.out.println("----Flight Information Menu---- \n");
-			System.out.println("1. Upload Flight");
-			System.out.println("2. Delete Flight");
-			System.out.println("3. Edit Flight");
-			System.out.println("4. View All Flights");
-			System.out.println("5. Search Flight");
-			System.out.println("6. Exit");
-			System.out.print("Select the menu between 1 - 6 : ");
+			showMenu();
 			selection = input.nextInt();
 			System.out.println();
 			switch(selection) {
@@ -42,5 +35,16 @@ public class FlightMenuManager {
 				System.out.println();
 			}		
 		}
+	}
+	
+	public static void showMenu () {
+		System.out.println("----Flight Information Menu---- \n");
+		System.out.println("1. Upload Flight");
+		System.out.println("2. Delete Flight");
+		System.out.println("3. Edit Flight");
+		System.out.println("4. View All Flights");
+		System.out.println("5. Search Flight");
+		System.out.println("6. Exit");
+		System.out.print("Select the menu between 1 - 6 : ");
 	}
 }

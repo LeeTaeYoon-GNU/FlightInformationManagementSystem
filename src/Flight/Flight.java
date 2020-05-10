@@ -2,7 +2,7 @@ package Flight;
 
 import java.util.Scanner;
 
-public class Flight {
+public abstract class Flight implements FlightInput{
 	protected FlightKind kind;
 	protected int flightNum;
 	protected String airlineName;
@@ -24,6 +24,11 @@ public class Flight {
 		this.arrival = arrival;
 		this.flightTime = flightTime;
 	}
+	
+	//abstract methods that are implemented in sub-class
+	public abstract void getUserInput(Scanner input);
+	public abstract void getUserEdit(Scanner input);
+	public abstract void printInfo();
 	
 	public FlightKind getKind() {
 		return kind;
@@ -73,91 +78,32 @@ public class Flight {
 		this.flightTime = flightTime;
 	}
 	
-	public void printInfo() {
-		String fkind = "None";
-		switch(this.kind) {
-		case DomesticFlight:
-			fkind = "DomesticFlight";
-			break;
-		case InternationalFlight:
-			fkind = "InternationalFlight";
-		default:
-			break;
-		}
-		System.out.println("FlightKind : " + fkind + "/ Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
-	}
 	
-	//for editing Domestic Flight
-	public void getUserEdit(Scanner input) {
-		int selection;
-		boolean flag = true;
-
-		while(flag) {
-			System.out.println("--Flight Information Edit Menu-- \n");
-			System.out.println("1. Edit Flight Numer");
-			System.out.println("2. Edit Airline");
-			System.out.println("3. Edit Departure");
-			System.out.println("4. Edit Arrival");
-			System.out.println("5. Edit Flight Time");
-			System.out.println("6. Exit");
-			System.out.print("Select the menu between 1 - 6 : ");
-			selection = input.nextInt();
-			System.out.println();
-			switch(selection) {
-			case 1:
-				System.out.print("Flight Number : ");
-				int edflightNum = input.nextInt();
-				this.setFlightNum(edflightNum);
-				System.out.println();
-				break;
-			case 2:
-				System.out.print("Airline : ");
-				String edairlineName = input.next();
-				this.setAirlineName(edairlineName);
-				System.out.println();
-				break;
-			case 3:
-				System.out.print("Departure : ");
-				String eddeparture = input.next();
-				this.setDeparture(eddeparture);
-				System.out.println();
-				break;
-			case 4:
-				System.out.print("Arrival : ");
-				String edarrival = input.next();
-				this.setArrival(edarrival);
-				System.out.println();
-				break;
-			case 5:
-				System.out.print("Flight Time : ");
-				String edflightTime = input.next();
-			this.setFlightTime(edflightTime);
-				System.out.println();
-				break;
-			case 6:
-				flag = false;
-				break;
-			}
-		}
-	}
-	
-	public void getUserInput(Scanner input) {
+	public void setFlightFlightNum(Scanner input) {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
 		this.setFlightNum(flightNum);
-		
+	}
+	
+	public void setFlightAirlineName(Scanner input) {
 		System.out.print("Airline : ");
 		String airlineName = input.next();
 		this.setAirlineName(airlineName);
-		
+	}
+	
+	public void setFlightDeparture(Scanner input) {
 		System.out.print("Departure : ");
 		String departure = input.next();
 		this.setDeparture(departure);
-		
+	}
+	
+	public void setFlightArrival(Scanner input) {
 		System.out.print("Arrival : ");
 		String arrival = input.next();
 		this.setArrival(arrival);
-		
+	}
+	
+	public void setFlightFlightTime(Scanner input) {
 		System.out.print("Flight Time : ");
 		String flightTime = input.next();
 		this.setFlightTime(flightTime);

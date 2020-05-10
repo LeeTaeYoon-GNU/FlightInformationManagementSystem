@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Flight.Flight;
-import Flight.FlightKind;
-import Flight.InternationalFlight;
+import Flight.*;
 
 public class FlightManager {
-	ArrayList<Flight> flights = new ArrayList<Flight>();
+	ArrayList<FlightInput> flights = new ArrayList<FlightInput>();
 	Scanner input;
 	FlightManager(Scanner input) {
 		this.input = input;
@@ -14,31 +12,18 @@ public class FlightManager {
 	
 	public void uploadFlight() {
 		int kind = 0;
-		Flight flight;
-		
 		//you can choose between Domestic flight and International flight
 		while(kind != 1 && kind != 2) {
-			System.out.println("--Kind of Flight--");
-			System.out.println("1. Domestic Flight");
-			System.out.println("2. International Flight");
-			System.out.print("Select between 1 - 2 : ");
+			showKindMenu();
 			kind = input.nextInt();
 			System.out.println();
 			  
 			switch(kind) {
 			case 1:
-				flight = new Flight(FlightKind.DomesticFlight);
-				flight.getUserInput(input);
-				flight.printInfo();
-				System.out.println();
-				flights.add(flight);
+				uploadDomestic();
 				break;
 			case 2:
-				flight = new InternationalFlight(FlightKind.InternationalFlight);
-				flight.getUserInput(input);
-				flight.printInfo();
-				System.out.println();
-				flights.add(flight);
+				uploadInternational();
 				break;
 			default :
 				System.out.println("Select again...");
@@ -50,23 +35,20 @@ public class FlightManager {
 	public void deleteFlight() {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
+		System.out.print("Airline : ");
+		String airline = input.next();
 		System.out.println();
-		int index = indexChecker(flights, flightNum);
-		if(index >= 0) {
-			flights.remove(index);
-			System.out.println("The Flight Information(Flight Number : " + flightNum + ") is deleted \n");
-			return;
-		}
-		else {
-			System.out.println("The Flight Information has not been registered \n");
-			return;
-		}
+		int index = findIndex(flightNum, airline);
+		removeFromFlights(index, flightNum);
+		return;
 	}
 	
 	public void editFlight() {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
-		int index = indexChecker(flights, flightNum);
+		System.out.print("Airline : ");
+		String airline = input.next();
+		int index = findIndex(flightNum, airline);
 		System.out.println();
 		if(index >= 0) {
 			flights.get(index).getUserEdit(input);
@@ -89,8 +71,10 @@ public class FlightManager {
 	public void searchFlight() {
 		System.out.print("Flight Number : ");
 		int flightNum = input.nextInt();
+		System.out.print("Airline : ");
+		String airline = input.next();
 		System.out.println();
-		int index = indexChecker(flights, flightNum);
+		int index = findIndex(flightNum, airline);
 		if(index >= 0) {
 			flights.get(index).printInfo();
 			System.out.println();
@@ -102,11 +86,49 @@ public class FlightManager {
 		}
 	}
 	
-	//if there is same flightNum from user in collection, than return the index of it. 
-	public int indexChecker(ArrayList<Flight> flights, int flightNum) {
+	//These method are used for structure of code looking concise.
+	public void showKindMenu() {
+		System.out.println("--Kind of Flight--");
+		System.out.println("1. Domestic Flight");
+		System.out.println("2. International Flight");
+		System.out.print("Select between 1 - 2 : ");
+	}
+	
+	public void uploadDomestic() {
+		FlightInput flightInput;
+		flightInput = new DomesticFlight(FlightKind.DomesticFlight);
+		flightInput.getUserInput(input);
+		flightInput.printInfo();
+		System.out.println();
+		flights.add(flightInput);
+	}
+	
+	public void uploadInternational() {
+		FlightInput flightInput;
+		flightInput = new InternationalFlight(FlightKind.InternationalFlight);
+		flightInput.getUserInput(input);
+		flightInput.printInfo();
+		System.out.println();
+		flights.add(flightInput);
+	}
+	
+	public int removeFromFlights(int index, int flightNum) {
+		if(index >= 0) {
+			flights.remove(index);
+			System.out.println("The Flight Information(Flight Number : " + flightNum + ") is deleted \n");
+			return 1;
+		}
+		else {
+			System.out.println("The Flight Information has not been registered \n");
+			return -1;
+		}
+	}
+	
+	//if there is same flightNum from user in collection, then return the index of it. 
+	public int findIndex(int flightNum, String airline) {
 		int index = -1;
 		for(int i = 0; i < flights.size(); i++) {
-			if(flights.get(i).getFlightNum() == flightNum) {
+			if(flights.get(i).getFlightNum() == flightNum && airline.equals(flights.get(i).getAirlineName())) {
 				index = i;
 				break;
 			}

@@ -28,15 +28,19 @@ public class InternationalFlight extends Flight {
 		this.transferTimes = transferTime;
 	}
 	
-	public void printInfo() {
-		super.printInfo();
-		System.out.print("/ TransferTimes : " + transferTimes + "/ Trnasfer City : ");
-		for(int i = 0; i < transferTimes; i++) {
-			System.out.print(transferCities.get(i));
-			if(i != (transferTimes - 1))
-				System.out.print(", ");
-		}
-		System.out.println();
+	//for upload International Flight
+	public void getUserInput(Scanner input) {
+		setFlightFlightNum(input);
+		
+		setFlightAirlineName(input);
+		
+		setFlightDeparture(input);
+		
+		setFlightArrival(input);
+		
+		setFlightFlightTime(input);
+		
+		setFlightTransferTime_City(input);
 	}
 	
 	//for editing International Flight
@@ -45,71 +49,36 @@ public class InternationalFlight extends Flight {
 		boolean flag = true;
 
 		while(flag) {
-			System.out.println("--Flight Information Edit Menu-- \n");
-			System.out.println("1. Edit Flight Numer");
-			System.out.println("2. Edit Airline");
-			System.out.println("3. Edit Departure");
-			System.out.println("4. Edit Arrival");
-			System.out.println("5. Edit Flight Time");
-			System.out.println("6. Edit Transfer Times");
-			System.out.println("7. Edit Transfer City");
-			System.out.println("8. Exit");
-			System.out.print("Select the menu between 1 - 8 : ");
+			showEditMenu();
 			selection = input.nextInt();
 			System.out.println();
 			switch(selection) {
 			case 1:
-				System.out.print("Flight Number : ");
-				int edflightNum = input.nextInt();
-				this.setFlightNum(edflightNum);
+				setFlightFlightNum(input);
 				System.out.println();
 				break;
 			case 2:
-				System.out.print("Airline : ");
-				String edairlineName = input.next();
-				this.setAirlineName(edairlineName);
+				setFlightAirlineName(input);
 				System.out.println();
 				break;
 			case 3:
-				System.out.print("Departure : ");
-				String eddeparture = input.next();
-				this.setDeparture(eddeparture);
+				setFlightDeparture(input);
 				System.out.println();
 				break;
 			case 4:
-				System.out.print("Arrival : ");
-				String edarrival = input.next();
-				this.setArrival(edarrival);
+				setFlightArrival(input);
 				System.out.println();
 				break;
 			case 5:
-				System.out.print("Flight Time : ");
-				String edflightTime = input.next();
-				this.setFlightTime(edflightTime);
+				setFlightFlightTime(input);
 				System.out.println();
 				break;
 			case 6:
-				System.out.print("Transfer Time : ");
-				int edtransferTimes = input.nextInt();
-				this.setTransferTime(edtransferTimes);
-				transferCities.clear();
-				input.nextLine();
-				for(int i = 0; i < transferTimes; i++) {
-					System.out.print((i+1) + ". Transfer city : ");
-					String edtransfer = input.nextLine();
-					this.transferCities.add(edtransfer);
-				}
+				setFlightTransferTime_City(input);
 				System.out.println();
 				break;
 			case 7:
-				transferCities.clear();
-				input.nextLine();
-				for(int i = 0; i < transferTimes; i++) {
-					
-					System.out.print((i+1) + ". Transfer city : ");
-					String edtransfer = input.nextLine();
-					this.transferCities.add(edtransfer);
-				}
+				setFlightTransferCity(input);
 				System.out.println();
 				break;
 			case 8:
@@ -119,16 +88,62 @@ public class InternationalFlight extends Flight {
 		}
 	}
 	
-	public void getUserInput(Scanner input) {
-		super.getUserInput(input);
-		System.out.print("Transfer Times : ");
-		int transferTimes = input.nextInt();
+	public void printInfo() {
+		String fkind = "InternationalFlight";
+		System.out.println("FlightKind : " + fkind + "/ Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
+		System.out.print("/ TransferTimes : " + transferTimes + "/ Trnasfer City : ");
+		showTransferCity(transferTimes);
+	}
+	
+	public void showEditMenu() {
+		System.out.println("--Flight Information Edit Menu-- \n");
+		System.out.println("1. Edit Flight Numer");
+		System.out.println("2. Edit Airline");
+		System.out.println("3. Edit Departure");
+		System.out.println("4. Edit Arrival");
+		System.out.println("5. Edit Flight Time");
+		System.out.println("6. Edit Transfer Times");
+		System.out.println("7. Edit Transfer City");
+		System.out.println("8. Exit");
+		System.out.print("Select the menu between 1 - 8 : ");
+	}
+	
+	//This method is used in prinfInfo method for prinfInfo method look concise
+	public void showTransferCity(int transferTimes) {
+		if(transferTimes == 0) 
+			System.out.println("None");
+		else {
+			for(int i = 0; i < transferTimes; i++) {
+				System.out.print(transferCities.get(i));
+				if(i != (transferTimes - 1))
+					System.out.print(", ");
+			}
+			System.out.println();
+		}
+	}
+	
+	//These methods below are defined because InternationalFlight class has more thing to save information than DomesticFlight class.
+	public void setFlightTransferTime_City(Scanner input) {
+		System.out.print("Transfer Time : ");
+		int transferTime = input.nextInt();
+		this.setTransferTime(transferTime);
+		transferCities.clear();
 		input.nextLine();
-		this.setTransferTime(transferTimes);
 		for(int i = 0; i < transferTimes; i++) {
 			System.out.print((i+1) + ". Transfer city : ");
-			String transfer = input.nextLine();
-			this.transferCities.add(transfer);
+			String edtransfer = input.nextLine();
+			this.transferCities.add(edtransfer);
+		}
+	}
+	
+	public void setFlightTransferCity(Scanner input) {
+		transferCities.clear();
+		input.nextLine();
+		for(int i = 0; i < transferTimes; i++) {
+			
+			System.out.print((i+1) + ". Transfer city : ");
+			String edtransfer = input.nextLine();
+			this.transferCities.add(edtransfer);
 		}
 	}
 }
