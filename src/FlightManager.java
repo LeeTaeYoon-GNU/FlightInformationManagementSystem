@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import exception.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Flight.*;
+import flight.*;
 
 public class FlightManager {
 	ArrayList<FlightInput> flights = new ArrayList<FlightInput>();
@@ -12,21 +14,35 @@ public class FlightManager {
 	
 	public void uploadFlight() {
 		int kind = 0;
+		
 		//you can choose between Domestic flight and International flight
 		while(kind != 1 && kind != 2) {
-			showKindMenu();
-			kind = input.nextInt();
-			System.out.println();
-			  
-			switch(kind) {
-			case 1:
-				uploadDomestic();
-				break;
-			case 2:
-				uploadInternational();
-				break;
-			default :
-				System.out.println("Select again...");
+			try {
+				showKindMenu();
+				kind = readKind(input);
+				System.out.println();
+
+				switch(kind) {
+				case 1:
+					uploadDomestic();
+					break;
+				case 2:
+					uploadInternational();
+					break;
+				}
+			}
+			catch(RangeOutOfBoundException e) {
+				System.out.println();
+				System.out.println(e.getMessage());
+				System.out.println("Select again between 1 - 2");
+				System.out.println();
+			}
+			catch(InputMismatchException e) {
+				if(input.hasNext()) {
+					input.next();
+				}
+				System.out.println();
+				System.out.println("Please put an Integer! Select again between 1 - 2");
 				System.out.println();
 			}
 		}
@@ -134,5 +150,14 @@ public class FlightManager {
 			}
 		}
 		return index;
+	}
+	
+	public int readKind(Scanner input) throws RangeOutOfBoundException, InputMismatchException {
+		int kind = input.nextInt();
+		
+		if(kind < 1 || kind > 2)
+			throw new RangeOutOfBoundException();
+		
+		return kind;
 	}
 }

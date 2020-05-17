@@ -1,4 +1,4 @@
-package Flight;
+package flight;
 
 public enum FlightKind {
 	DomesticFlight,

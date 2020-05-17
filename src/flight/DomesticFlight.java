@@ -1,5 +1,7 @@
-package Flight;
+package flight;
 
+import exception.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DomesticFlight extends Flight {
@@ -34,33 +36,49 @@ public class DomesticFlight extends Flight {
 		boolean flag = true;
 
 		while(flag) {
-			showEditMenu();
-			selection = input.nextInt();
-			System.out.println();
-			switch(selection) {
-			case 1:
-				setFlightFlightNum(input);
+			try {
+				showEditMenu();
+				selection = readSelection(input);
 				System.out.println();
-				break;
-			case 2:
-				setFlightAirlineName(input);
+				switch(selection) {
+				case 1:
+					setFlightFlightNum(input);
+					System.out.println();
+					break;
+				case 2:
+					setFlightAirlineName(input);
+					System.out.println();
+					break;
+				case 3:
+					setFlightDeparture(input);
+					System.out.println();
+					break;
+				case 4:
+					setFlightArrival(input);
+					System.out.println();
+					break;
+				case 5:
+					setFlightFlightTime(input);
+					System.out.println();
+					break;
+				case 6:
+					flag = false;
+					break;
+				}
+			}
+			catch(RangeOutOfBoundException e) {
 				System.out.println();
-				break;
-			case 3:
-				setFlightDeparture(input);
+				System.out.println(e.getMessage());
+				System.out.println("Select again between 1 - 6");
 				System.out.println();
-				break;
-			case 4:
-				setFlightArrival(input);
+			}
+			catch(InputMismatchException e) {
+				if(input.hasNext()) {
+					input.next();
+				}
 				System.out.println();
-				break;
-			case 5:
-				setFlightFlightTime(input);
+				System.out.println("Please put an Integer! Select again between 1 - 6");
 				System.out.println();
-				break;
-			case 6:
-				flag = false;
-				break;
 			}
 		}
 	}
@@ -79,5 +97,14 @@ public class DomesticFlight extends Flight {
 		System.out.println("5. Edit Flight Time");
 		System.out.println("6. Exit");
 		System.out.print("Select the menu between 1 - 6 : ");
+	}
+	
+	public int readSelection(Scanner input) throws RangeOutOfBoundException, InputMismatchException {
+		int selection = input.nextInt();
+		
+		if(selection < 1 || selection > 6)
+			throw new RangeOutOfBoundException();
+		
+		return selection;
 	}
 }
