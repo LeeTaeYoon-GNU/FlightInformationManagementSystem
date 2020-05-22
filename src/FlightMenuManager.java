@@ -1,11 +1,20 @@
 import exception.RangeOutOfBoundException;
+import log.EventLogger;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FlightMenuManager {
+	 static EventLogger logger = new EventLogger("log.txt");
+	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		FlightManager flightManager = new FlightManager(input);
+
+		selectMenu(input, flightManager);
+	}
+	
+	public static void selectMenu(Scanner input, FlightManager flightManager) {
 		int selection;
 		boolean flag = true;
 		 
@@ -17,18 +26,23 @@ public class FlightMenuManager {
 				switch(selection) {
 				case 1:
 					flightManager.uploadFlight();
+					logger.log("Upload a FlightInformation");
 					break;
 				case 2:
 					flightManager.deleteFlight();
+					logger.log("Delete a FlightInformation");
 					break;
 				case 3:
 					flightManager.editFlight();
+					logger.log("Edit a FlightInformation");
 					break;
 				case 4:
 					flightManager.viewAllFlights();
+					logger.log("View a list of FlightInformation");
 					break;
 				case 5:
 					flightManager.searchFlight();
+					logger.log("Search a FlightInformation");
 					break;
 				case 6:
 					System.out.println("Thank you for using. Good Bye~!");
