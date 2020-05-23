@@ -1,6 +1,12 @@
 import exception.RangeOutOfBoundException;
 import log.EventLogger;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,10 +14,53 @@ public class FlightMenuManager {
 	 static EventLogger logger = new EventLogger("log.txt");
 	
 	public static void main(String[] args) {
+		logger.startLog();
+		
 		Scanner input = new Scanner(System.in);
-		FlightManager flightManager = new FlightManager(input);
-
+		FlightManager flightManager = getObject("flightmanager.ser");
+		if(flightManager == null)
+			flightManager = new FlightManager(input);
+		else
+			flightManager.setScanner(input);
+		
 		selectMenu(input, flightManager);
+		
+		putObject(flightManager, "flightmanager.ser");
+		logger.endLog();
+	}
+	
+	public static FlightManager getObject(String fileName) {
+		FlightManager flightManager = null;
+		try {
+			FileInputStream file = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			flightManager = (FlightManager) in.readObject();
+			
+			in.close();
+			file.close();
+		} catch (FileNotFoundException e) {
+			return flightManager;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return flightManager;
+	}
+	
+	public static void putObject(FlightManager flightManager, String fileName) {
+		try {
+			FileOutputStream file = new FileOutputStream(fileName);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(flightManager);
+			
+			out.close();
+			file.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void selectMenu(Scanner input, FlightManager flightManager) {

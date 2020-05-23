@@ -1,10 +1,17 @@
 package flight;
 
 import exception.*;
+
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Flight implements FlightInput{
+public abstract class Flight implements FlightInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6157838527081530301L;
+	
 	protected FlightKind kind;
 	protected int flightNum;
 	protected String airlineName;

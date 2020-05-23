@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import exception.*;
 import java.util.InputMismatchException;
@@ -5,9 +6,14 @@ import java.util.Scanner;
 
 import flight.*;
 
-public class FlightManager {
+public class FlightManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7051880496811112802L;
+	
 	ArrayList<FlightInput> flights = new ArrayList<FlightInput>();
-	Scanner input;
+	transient Scanner input;
 	FlightManager(Scanner input) {
 		this.input = input;
 	}
@@ -160,4 +166,8 @@ public class FlightManager {
 		
 		return kind;
 	}
+	
+	public void setScanner(Scanner input) {
+        this.input = input;
+    }
 }

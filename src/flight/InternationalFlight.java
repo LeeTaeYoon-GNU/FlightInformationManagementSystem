@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InternationalFlight extends Flight {
+	
 	//in contrast with "Flight.class", this class has two more fields
 	private int transferTimes;
 	private ArrayList<String> transferCities = new ArrayList<String>();
