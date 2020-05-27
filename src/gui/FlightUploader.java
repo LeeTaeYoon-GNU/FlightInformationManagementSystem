@@ -4,9 +4,9 @@ import javax.swing.*;
 
 public class FlightUploader extends JFrame{
 	public FlightUploader() {
-		super("Flight Upload");
+		super("Flight Upload");	//Frame창 제목설정(상위클래스의 생성자 호출)
 		JPanel panel = new JPanel();
-		panel.setLayout(new SpringLayout());
+		panel.setLayout(new SpringLayout());	//Layout을 "SpringLayout"으로 설정
 		
 		JLabel labelFlightNumber = new JLabel("Flight Number: ", JLabel.TRAILING);
 		JTextField fieldFlightNumber = new JTextField(10);
@@ -38,7 +38,11 @@ public class FlightUploader extends JFrame{
 		panel.add(labelFlightTime);
 		panel.add(fieldFlightTime);
 		
-		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
+		panel.add(new JButton("save"));
+		panel.add(new JButton("cancel"));
+		
+		//SpringUtilities클래스의 makeCompactGrid라는 메소드를 이용해 패널내부 조정해줌
+		SpringUtilities.makeCompactGrid(panel, 6, 2, 6, 6, 6, 6);
 		
 		this.setSize(300, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

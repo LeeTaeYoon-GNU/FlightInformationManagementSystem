@@ -5,10 +5,7 @@ import javax.swing.*;
 
 public class MenuSelection extends JFrame{
 	public MenuSelection() {
-		super("Flight Management");	//Frame창 제목설정
-		this.setSize(300, 200);	//frame창 크기설정
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		super("Flight Management");	//Frame창 제목설정(상위클래스의 생성자 호출)
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		
@@ -28,9 +25,12 @@ public class MenuSelection extends JFrame{
 		panel2.add(button5);
 		panel2.add(button6);
 		
+		//패널을 각각 frame의 위쪽, 중앙에 위치
 		this.add(panel1, BorderLayout.NORTH);
 		this.add(panel2, BorderLayout.CENTER);
 
+		this.setSize(300, 200);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 }
