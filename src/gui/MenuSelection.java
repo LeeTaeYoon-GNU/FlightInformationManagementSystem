@@ -3,9 +3,15 @@ package gui;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
-public class MenuSelection extends JFrame{
-	public MenuSelection() {
-		super("Flight Management");	//Frame창 제목설정(상위클래스의 생성자 호출)
+import listener.*;
+
+public class MenuSelection extends JPanel{
+	WindowFrame frame;
+	
+	public MenuSelection(WindowFrame frame) {
+		this.frame = frame;
+		this.setLayout(new BorderLayout());
+		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		
@@ -16,6 +22,12 @@ public class MenuSelection extends JFrame{
 		JButton button4 = new JButton("View All Flights");
 		JButton button5 = new JButton("Search Flight");
 		JButton button6 = new JButton("Exit");
+		
+		button1.addActionListener(new ButtonUploadListener(frame));
+		button2.addActionListener(new ButtonRemoveListener(frame));
+		button3.addActionListener(new ButtonEditListener(frame));
+		button4.addActionListener(new ButtonAllViewListener(frame));
+		button5.addActionListener(new ButtonSearchListener(frame));
 		
 		panel1.add(label);
 		panel2.add(button1);
@@ -28,9 +40,5 @@ public class MenuSelection extends JFrame{
 		//패널을 각각 frame의 위쪽, 중앙에 위치
 		this.add(panel1, BorderLayout.NORTH);
 		this.add(panel2, BorderLayout.CENTER);
-
-		this.setSize(300, 200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
 }

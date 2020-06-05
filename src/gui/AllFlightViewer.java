@@ -3,26 +3,30 @@ package gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class AllFlightViewer extends JFrame {
-	public AllFlightViewer() {
-		super("All of Flight Information");	//Frame창 제목설정(상위클래스의 생성자 호출)
+public class AllFlightViewer extends JPanel {
+	WindowFrame frame;
+	
+	public AllFlightViewer(WindowFrame frame) {
+		this.frame = frame;
 		
-		DefaultTableModel model = new DefaultTableModel();	//디폴트 테이블 모드 인스턴스 생성
+		JTabbedPane tab = new JTabbedPane(JTabbedPane.TOP);
 		
-		//테이블에 열을 늘리며 내용 추가
-		model.addColumn("Flight Number");
-		model.addColumn("Airline");
-		model.addColumn("Departure");
-		model.addColumn("Arrival");
-		model.addColumn("Flight Time");
+		JPanel one = new JPanel();
+		JPanel two = new JPanel();
 		
-		JTable table = new JTable(model);	//설정한 테이블을 container인 JTable에 추가
-		JScrollPane sp = new JScrollPane(table);	//스크롤기능이 있는 JScrollPane에 table 추가
+		DomesticTable t1 = new DomesticTable();
+		InternationalTable t2 = new InternationalTable();
 		
-		this.add(sp);	//Frame에 sp추가
+		one.setSize(700, 700);
+		two.setSize(700, 700);
 		
-		this.setSize(500, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+		one.add(t1);
+		two.add(t2);
+		
+		tab.addTab("Domestic Flight", one);
+		tab.addTab("International Flight", two);
+		
+		this.setSize(700, 700);
+		this.add(tab);
 	}
 }

@@ -5,7 +5,9 @@ import javax.swing.*;
 
 //FlightEditor를 통해 Flight를 검색한 뒤 만약 수정하고자하는 Flight가 존재하면 그 Flight를 수정하도록 수정메뉴를 보여주는 클래스
 public class EditMenuSelection extends JFrame{
-	public EditMenuSelection() {
+	WindowFrame frame;
+	
+	public EditMenuSelection(WindowFrame frame) {
 		super("Edit");	//Frame창 제목설정(상위클래스의 생성자 호출)		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
