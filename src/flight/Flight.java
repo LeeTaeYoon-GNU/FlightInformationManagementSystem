@@ -107,6 +107,7 @@ public abstract class Flight implements FlightInput, Serializable{
 				if(input.hasNext()) {
 					input.next();
 				}
+				
 				System.out.println();
 				System.out.println("Please put a Number!");
 				System.out.println();
@@ -178,7 +179,6 @@ public abstract class Flight implements FlightInput, Serializable{
 	
 	public int readFlightNumber(Scanner input) throws RangeOutOfBoundException, InputMismatchException {
 		int flightNumber = input.nextInt();
-		
 		if(flightNumber < 0)
 			throw new RangeOutOfBoundException();
 		

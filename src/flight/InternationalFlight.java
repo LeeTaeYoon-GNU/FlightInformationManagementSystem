@@ -110,8 +110,7 @@ public class InternationalFlight extends Flight {
 	public void printInfo() {
 		String fkind = "InternationalFlight";
 		System.out.println("FlightKind : " + fkind + "/ Flight Number : " + flightNum + "/ AirLine : " + airlineName + "/ Departure : " + departure + "/ Arrival : " + arrival + "/ Flight Time : " + flightTime);
-		System.out.print("/ TransferTimes : " + transferTimes + " times" + "/ Trnasfer City : ");
-		showTransferCity(transferTimes);
+		System.out.print("/ TransferTimes : " + transferTimes + " times" + "/ Trnasfer City : " + getTransferCity(transferTimes));
 	}
 	
 	public void showEditMenu() {
@@ -137,16 +136,19 @@ public class InternationalFlight extends Flight {
 	}
 	
 	//This method is used in prinfInfo method for prinfInfo method look concise
-	public void showTransferCity(int transferTimes) {
-		if(transferTimes == 0) 
-			System.out.println("None");
+	public String getTransferCity(int transferTimes) {
+		StringBuilder cities = new StringBuilder();
+		if(transferTimes == 0) {
+			cities.append("none");
+			return cities.toString();
+		}
 		else {
 			for(int i = 0; i < transferTimes; i++) {
-				System.out.print(transferCities.get(i));
+				cities.append(transferCities.get(i));
 				if(i != (transferTimes - 1))
-					System.out.print(", ");
+					cities.append(", ");
 			}
-			System.out.println();
+			return cities.toString();
 		}
 	}
 	

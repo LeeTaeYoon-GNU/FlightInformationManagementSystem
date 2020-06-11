@@ -26,10 +26,12 @@ public class EventLogger {
 		}
 	}
 	
+	//프로그램이 시작될 떄 기록을 위한 메소드
 	public void startLog() {
 		logger.info("---------------------------Program Start---------------------------");
 	}
 	
+	//프로그램이 끝날 때 기록을 위한 메소드
 	public void endLog() {
 		logger.info("---------------------------Program End-----------------------------" + "\n");
 	}

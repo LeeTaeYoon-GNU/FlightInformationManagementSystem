@@ -1,6 +1,7 @@
+package manager;
 import exception.RangeOutOfBoundException;
+import gui.WindowFrame;
 import log.EventLogger;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,23 +15,26 @@ public class FlightMenuManager {
 	 static EventLogger logger = new EventLogger("log.txt");
 	
 	public static void main(String[] args) {
-		logger.startLog();
+		logger.startLog();		//프로그램이 시작할 때를 기록
 		
 		Scanner input = new Scanner(System.in);
-		FlightManager flightManager = getObject("flightmanager.ser");
+		FlightManager flightManager = getObject("flightmanager.ser");		//파일에서 객체 가져오기
 		if(flightManager == null)
 			flightManager = new FlightManager(input);
 		else
 			flightManager.setScanner(input);
 		
+		WindowFrame frame = new WindowFrame(flightManager);
 		selectMenu(input, flightManager);
 		
 		putObject(flightManager, "flightmanager.ser");
-		logger.endLog();
+		logger.endLog();		//프로그램이 끝날 때를 기록
 	}
 	
 	public static FlightManager getObject(String fileName) {
 		FlightManager flightManager = null;
+		
+		//파일에서 객체 읽어들이기. 파일을 찾지 못했을 때 null값을 반환
 		try {
 			FileInputStream file = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(file);
@@ -50,6 +54,7 @@ public class FlightMenuManager {
 	}
 	
 	public static void putObject(FlightManager flightManager, String fileName) {
+		//파일에 객체 입력하기
 		try {
 			FileOutputStream file = new FileOutputStream(fileName);
 			ObjectOutputStream out = new ObjectOutputStream(file);
@@ -75,23 +80,23 @@ public class FlightMenuManager {
 				switch(selection) {
 				case 1:
 					flightManager.uploadFlight();
-					logger.log("Upload a FlightInformation");
+					logger.log("Upload a FlightInformation");		//upload할 때 기록
 					break;
 				case 2:
 					flightManager.deleteFlight();
-					logger.log("Delete a FlightInformation");
+					logger.log("Delete a FlightInformation");		//delete할 때 기록
 					break;
 				case 3:
 					flightManager.editFlight();
-					logger.log("Edit a FlightInformation");
+					logger.log("Edit a FlightInformation");			//edit할 때 기록
 					break;
 				case 4:
 					flightManager.viewAllFlights();
-					logger.log("View a list of FlightInformation");
+					logger.log("View a list of FlightInformation");	//view할 때 기록
 					break;
 				case 5:
 					flightManager.searchFlight();
-					logger.log("Search a FlightInformation");
+					logger.log("Search a FlightInformation");		//search할 때 기록
 					break;
 				case 6:
 					System.out.println("Thank you for using. Good Bye~!");

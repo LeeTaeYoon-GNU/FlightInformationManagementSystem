@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import gui.FlightRemover;
 import gui.WindowFrame;
 
+//MenuSelection -> Delete Flight버튼을 눌렀을 때를 위한 Listener
 public class ButtonRemoveListener implements ActionListener {
 	WindowFrame frame;
 	

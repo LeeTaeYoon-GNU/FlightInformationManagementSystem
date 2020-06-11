@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import gui.FlightSearcher;
 import gui.WindowFrame;
 
+//MenuSelection -> Search Flight버튼을 눌렀을 때를 위한 Listener
 public class ButtonSearchListener implements ActionListener {
 	WindowFrame frame;
 	

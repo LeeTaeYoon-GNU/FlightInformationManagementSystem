@@ -14,4 +14,15 @@ public interface FlightInput {
 	public void getUserEdit(Scanner input);
 	
 	public void getUserInput(Scanner input);
+
+	
+	public void setFlightNum(int parseInt);
+
+	public void setDeparture(String text);
+
+	public void setAirlineName(String text);
+
+	public void setArrival(String text);
+
+	public void setFlightTime(String text);
 }

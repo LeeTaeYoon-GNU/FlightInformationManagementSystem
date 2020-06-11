@@ -2,7 +2,11 @@ package gui;
 
 import javax.swing.*;
 
+import manager.FlightManager;
+
 public class WindowFrame extends JFrame {
+	FlightManager flightManager;
+	
 	MenuSelection menuSelection;
 	FlightUploader flightUploader;
 	FlightRemover flightRemover;
@@ -10,12 +14,14 @@ public class WindowFrame extends JFrame {
 	AllFlightViewer allViewer;
 	FlightSearcher flightSearcher;
 	
-	public WindowFrame() {
+	public WindowFrame(FlightManager flightManager) {
+		this.flightManager = flightManager;
+		
 		this.menuSelection = new MenuSelection(this);
 		this.flightUploader = new FlightUploader(this);
 		this.flightRemover = new FlightRemover(this);
 		this.flightEditor = new FlightEditor(this);
-		this.allViewer = new AllFlightViewer(this);
+		this.allViewer = new AllFlightViewer(this, this.flightManager);
 		this.flightSearcher = new FlightSearcher(this);
 		
 		this.setSize(700, 150);
@@ -40,6 +46,14 @@ public class WindowFrame extends JFrame {
 	
 	public void setupTitle(String title) {
 		this.setTitle(title);
+	}
+
+	public FlightManager getFlightManager() {
+		return flightManager;
+	}
+
+	public void setFlightManager(FlightManager flightManager) {
+		this.flightManager = flightManager;
 	}
 
 	public MenuSelection getMenuSelection() {

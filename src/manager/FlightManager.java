@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import exception.*;
@@ -134,6 +136,10 @@ public class FlightManager implements Serializable{
 		flights.add(flightInput);
 	}
 	
+	public void uploadToList(FlightInput flightInput) {
+		flights.add(flightInput);
+	}
+	
 	public int removeFromFlights(int index, int flightNum) {
 		if(index >= 0) {
 			flights.remove(index);
@@ -170,4 +176,22 @@ public class FlightManager implements Serializable{
 	public void setScanner(Scanner input) {
         this.input = input;
     }
+	
+	public int size() {
+		return flights.size();
+	}
+	
+	//찾고자 하는 index안의 인스턴스가 DoemsticFlight일 때만 그 인스턴스 반환
+	public DomesticFlight getDomestic(int index) {
+		if(flights.get(index) instanceof DomesticFlight)
+			return (DomesticFlight)flights.get(index);
+		return null;
+	}
+	
+	//찾고자 하는 index안의 인스턴스가 InternationalFlight일 때만 그 인스턴스 반환
+	public InternationalFlight getInternational(int index) {
+		if(flights.get(index) instanceof InternationalFlight)
+			return (InternationalFlight)flights.get(index);
+		return null;
+	}
 }

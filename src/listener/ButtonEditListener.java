@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import gui.FlightEditor;
 import gui.WindowFrame;
 
+//MenuSelection -> Edit Flight버튼을 눌렀을 때를 위한 Listener
 public class ButtonEditListener implements ActionListener {
 	WindowFrame frame;
 	

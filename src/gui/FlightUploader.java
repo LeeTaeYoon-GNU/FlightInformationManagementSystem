@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 
+import listener.ButtonSaveDomesticListener;
+
 public class FlightUploader extends JPanel{
 	WindowFrame frame;
 	
@@ -39,8 +41,14 @@ public class FlightUploader extends JPanel{
 		this.add(labelFlightTime);
 		this.add(fieldFlightTime);
 		
-		this.add(new JButton("save"));
-		this.add(new JButton("cancel"));
+		JButton saveButton = new JButton("save");
+		JButton cancelButton = new JButton("cancel");
+		
+		saveButton.addActionListener(new ButtonSaveDomesticListener(frame, frame.getFlightManager(), fieldFlightNumber, fieldAirline, fieldDeparture, 
+				fieldArrival, fieldFlightTime));
+		//cancelButton.addActionListener(l);
+		this.add(saveButton);
+		this.add(cancelButton);
 		
 		//SpringUtilities클래스의 makeCompactGrid라는 메소드를 이용해 패널내부 조정해줌
 		SpringUtilities.makeCompactGrid(this, 6, 2, 6, 6, 6, 6);
